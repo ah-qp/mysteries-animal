@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>동물</title>
+	<style type="text/css">
+		html{ font-family: 'RIDIBatang';}
+		@font-face { font-family: 'RIDIBatang'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff'); font-weight: normal; font-style: normal; }
+		body, div, h1, h2, h3, p, img, div 
+		{margin: 0;
+		padding: 0;
+		text-align: left;}
+		body{background-image: url(c.jpg);
+			background-size: cover;}
+		h1,h2,h3,p{font-weight: normal;}
+		h1{position: absolute;
+			top: 7.5%;
+			margin-left: 130px; 
+			font-size: 60px;
+			width: 500px;
+			color: white;}
+		.first{height: 290px;
+			background-image: url(top.png);
+			background-size: cover;
+			background-position: 0px -500px;
+			box-shadow: 0px 5px 10px gray;}
+		.infirst{height: 290px;
+			opacity: 0.2;
+			background:black;}
+		.infirst:hover{opacity: 0.5;}
+		h2 {margin: 10px;
+			font-size: 30px;
+			color: yellow;
+			line-height: 45px;}
+		.black{color: white;}
+		p {font-size: 15px;
+			color: white;
+			padding: 10px;
+			line-height:30px; 
+			padding-bottom: 0;}
+		h3 {position: absolute;
+			top:30%;
+			right:10%;
+			color: white;
+			font-size: 18px;
+			line-height: 31px;
+			opacity: 0.8;}
+		.wrap {width: 85%;
+			margin-top: 80px;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			margin-left: 120px;}
+		.box {position: relative;
+			perspective: 1300px;
+			width: 300px;
+			height: 500px;
+			background: #fff;
+			margin: 10px;
+			box-sizing: border-box;
+			display: inline-block;
+			background: gray; 
+			background-size: 170%;
+			background-position: -100px -190px;
+			box-shadow: 10px 10px 10px gray;}
+		.box:hover{background-size: cover;
+			background-position: 0px 0px;}
+		.text 
+		{position: absolute;
+			top: 10px;
+			left: 10px;
+			bottom: 10px;
+			right: 10px;
+			background: black;
+			transform: rotate(0deg);
+			opacity: 0;
+			transition: all .5s;}
+		.image{background-color: yellow;
+			height: 160px;
+			background-size: cover;}
+		.text .sp{
+				margin: 0;
+				padding: 0;
+				margin-left: 10px;
+				margin-bottom: 10px;
+				height: 15px;
+				font-size: 12px;
+				color: gray;}
+		.text .sp1{
+				margin: 0;
+				padding: 0;
+				margin-left: 10px;
+				margin-bottom: 10px;
+				margin-top: 10px;
+				height: 15px;
+				font-size: 12px;}
+		.text h2{margin-bottom: 0;
+			height: 40px;
+			font-size: 26px;}
+		.text p {line-height:30px;
+				letter-spacing: -1px;}
+		.text .ssp{
+				font-size: 11px;
+				line-height: 22px;
+				padding-top: 5px;
+				color: gray;}
+
+		.animal {color: black;
+			display: inline-block;
+			height: 20px;
+			padding-top: 5px;
+			opacity: 0.5;}
+		.animal:hover{
+			color: black; 
+			font-size: 20px;
+			font-weight: 1000px;
+			opacity: 1;}
+		.wrap2{position: fixed;
+			left:20px;
+			top: 310px;
+			bottom: 10px;}
+		#w2{opacity: 1;}
+		.w2p{color: black; 
+			font-size: 15px; 
+			padding: 0;
+			padding-left:10px;
+			opacity: 0.7;}
+		#result{position: fixed;
+			left:20px;
+			top: 250px;
+			color: black;}
+		.door{position: absolute;
+			width: 90%;
+			height: 50px;
+			top: 40%;
+			left: 10px;
+			right: 10px;
+			font-size: 80px;}
+		footer{width: 50%;
+			margin: 20px;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			margin-left: 120px;}
+		.link{position: relative;
+			width: 200px;
+			height: 250px;
+			margin: 10px;
+			margin-top: 30px;
+			box-sizing: border-box;
+			display: inline-block;}
+		.link p{line-height: 16px;
+			font-size: 11px;
+			color: gray;
+			padding: 0;
+			padding-left: 10px;}
+		.link a{margin-left: 10px;
+			text-decoration: none;
+			line-height: 16px;
+			font-size: 11px;
+			color: gray;}
+		hr{margin-top: 150px;
+			width: 85%}
+		a:hover{text-decoration-line: underline; }
+		.link .pp{color: black; 
+			font-size: 13px; 
+			margin-bottom: 13px;
+			opacity: 0.9;}
+		.link .ppp{color: black; 
+			font-size: 13px; 
+			margin-bottom: 9px;
+			opacity: 0.9;}
+		.copyright{color: black; 
+			text-align: left;
+			opacity: 0.8;}
+	</style>
+</head>
+<body>
+	<div class="first">
+		<div class="infirst"></div>
+			<h1>신비한 <br> 동물 상식</h1>
+			<h3>어떤 동물일까요? 사진에 힌트가 있어요.
+				<br>동물을 : 에 드래그 해주세요.</h3>
+	</div>
+	<div class="wrap2" id="w2">
+		<p class="w2p">[ 동물 ]</p>
+	  	<p ondragstart="dragStart(event)" 
+	    draggable="true" id="bear" class="animal" >
+	    	곰
+	  	</p><br>
+	  	<p ondragstart="dragStart(event)" 
+	    draggable="true" id="mole" class="animal" >
+	    	두더지
+	  	</p><br>
+	  	<p ondragstart="dragStart(event)" 
+	    draggable="true" id="rabbit" class="animal">
+	    	토끼
+	  	</p><br>
+	  	<p ondragstart="dragStart(event)" 
+	    draggable="true" id="bee" class="animal" >
+	    	벌
+	  	</p><br>
+	  	<p ondragstart="dragStart(event)" 
+	    draggable="true" id="elephant" class="animal" >
+	    	코끼리
+	  	</p><br>
+	  	<p ondragstart="dragStart(event)" 
+	    draggable="true" id="jellyfish" class="animal" >
+	    	해파리
+	  	</p><br>
+	  	<p ondragstart="dragStart(event)" 
+	    draggable="true" id="rat" class="animal" >
+	    	쥐
+	  	</p><br>
+	  	<p ondragstart="dragStart(event)" 
+	    draggable="true" id="dolphin" class="animal" >
+	    	돌고래
+	  	</p><br>
+	  	<p ondragstart="dragStart(event)" 
+	    draggable="true" id="horse" class="animal" >
+	    	말
+	  	</p><br>
+	  	<p ondragstart="dragStart(event)" 
+	    draggable="true" id="whale" class="animal" >
+	    	고래
+	  	</p><br>
+	  	<p ondragstart="dragStart(event)" 
+	    draggable="true" id="snake" class="animal" >
+	    	뱀
+	  	</p><br>
+	  	<p ondragstart="dragStart(event)" 
+	    draggable="true" id="turtle" class="animal">
+	    	거북이
+	  	</p>
+
+	</div>
+
+  <p id="result"></p>
+
+	<div class="wrap"  ondrop="drop(event)" ondragover="allowDrop(event)">
+		<div class="box" style="background-image: url(turtle.png);">
+			<h2 class="black">
+			 엉덩이로<br> 숨쉰다.
+			</h2>
+			<div class="door">
+				<h1>:</h1>
+			</div>
+			<div class="text" id="turtle3">
+				<div>
+				<div class="image" 
+				style="background-image: url(turtle.jpg); background-position: 0px -20px;"></div>
+				<p class="sp1"> 엉덩이로 숨쉬는 </p>
+				<h2 id="turtle2">동양비단거북</h2>
+					<p class="sp">( Eastern painted turtle )</p>
+					<p>거북이는 외부온도에 따라 변하는 <br>변온 동물로 추운 겨울 자신의 체온을 <br> 떨어뜨려 신진대사 속도를 늦춘다. 
+					<br> 이 때 동양비단거북이는 최소한의 <br>호흡을 하기 위해 엉덩이를 이용한다.</p>
+				</div>
+			</div>
+		</div>
+		<div class="box" style="background-image: url(rabbit.png);">
+			<h2 class="black">
+				변을 <br> 먹는다.
+			</h2>
+			<div class="door">
+				<h1>:</h1>
+			</div>
+			<div class="text" id="rabbit3">
+				<div>
+					<div class="image" 
+					style="background-image:url(rabbit.jpg);
+					background-position: 0px -9px;"></div>
+				<p class="sp1"> 변을 먹는 </p>
+				<h2 id="rabbit2">토끼</h2>
+				<p class="sp">( Rabbit )</p>
+					<p>
+					토끼는 1차 소화과정에서 음식물의<br> 영양분을 모두 흡수하지 못한다. <br>특히 섬유질을 모두 흡수하지 못해 <br>토끼는 자신이 싼 변 중에서 묽은 변을 <br>섭취해 영양분을 완벽하게 섭취하려 한다.
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="box" style="background-image: url(jellyfish.png);">
+			<h2 class="black">
+				영원히<br> 산다.
+			</h2>
+			<div class="door">
+				<h1>:</h1>
+			</div>
+			<div class="text" id="jellyfish3">
+				<div>
+					<div class="image"
+					style="background-image:url(jellyfish.jpg);
+					background-position: 0px -26px;"></div>
+					<p class="sp1"> 영원히 사는 </p>
+				<h2 id="jellyfish2">작은보호탑해파리</h2>
+				<p class="sp">( Turritopsis nutricula )</p>
+					<p>
+					해파리는 번식 후에 영유아 상태인 폴립상태로 돌아가 다시 성장한다. 외부의 환경이 <br>변하거나 다른 생물에 잡아먹히지 않는 한 성장을 되풀이하며 영원히 살아간다.
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="box" style="background-image: url(horse.png);">
+			<h2 class="black">
+				서서<br> 잔다.
+			</h2>
+			<div class="door">
+				<h1>:</h1>
+			</div>
+			<div class="text" id="horse3">
+				<div>
+					<div class="image"
+					style="background-image:url(horse.jpg);
+					background-position: 0px -26px;"></div>
+					<p class="sp1"> 서서 자는 </p>
+				<h2 id="horse2">말</h2>
+				<p class="sp">( Horse )</p>
+					<p>
+					말은 야생에서 맹수의 공격을 피해 언제든 도망갈 수 있게 서서 자는 본능이 발달했다. 만약에 말이 안전함을 느낀다면 누워서 잔다. 보통은 하루에 30분 정도 누워서 잔다.
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="box" style="background-image: url(bear.png);">
+			<h2 class="black">
+				배변을<br> 안한다.
+			</h2>
+			<div class="door">
+				<h1>:</h1>
+			</div>
+			<div class="text" id="bear3">
+				<div>
+					<div class="image"
+					style="background-image:url(bear.jpg);
+					background-position: 0px -10px;"></div>
+					<p class="sp1"> 배변을 안하는 </p>
+				<h2 id="bear2">곰</h2>
+				<p class="sp">( Bear )</p>
+					<p>
+					곰은 겨울잠을 자는 동안에 배뇨 배변을 <br>하지 않는다. 신장의 벽을 통해 자기 배설물을 흡수해서 주요 성분인 질소화합물을 <br>자기 영양분으로 흡수할 수 있기 때문이다. 자기의 배설물을 자면서 재활용하고 있다. 
+					</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="box" style="background-image: url(bee.png);">
+			<h2 class="black">
+				최초로 <br> 재판을<br> 받았다.
+			</h2>
+			<div class="door">
+				<h1>:</h1>
+			</div>
+			<div class="text" id="bee3">
+				<div>
+					<div class="image"
+					style="background-image:url(bee.jpg);
+					background-position: 0px -26px;"></div>
+					<p class="sp1"> 최초로 재판을 받은 </p>
+				<h2 id="bee2">벌</h2>
+				<p class="sp">( Bee )</p>
+					<p>
+					벌이 저지른 살인죄로 864년 최초로 <br>동물 재판이 독일에서 열렸다. 벌은 사람을 침으로 쏘아 죽인 죄로 재판에 회부되었고 사형 판결을 받았다. 벌의 둥지를 막아 <br>질식사 시키는 것으로 사형을 집행하였다.
+
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="box" style="background-image: url(snake.png);">
+			<h2 class="black">
+				날개 없이 <br> 날아다닌다.
+			</h2>
+			<div class="door">
+				<h1>:</h1>
+			</div>
+			<div class="text" id="snake3">
+				<div>
+					<div class="image"
+					style="background-image:url(snake.jpg);"></div>
+					<p class="sp1"> 날개 없이 날아다니는 </p>
+				<h2 id="snake2">크리코펠리아 파라디시</h2>
+				<p class="sp">( Chrysopelea paradise )</p>
+					<p>
+					뱀은 활공을 하여 나무에서 나무로 <br>날아서 이동한다. 더 멀리 날기 위해 <br>가지에서 뛰어오르기도 한다. 이 때 <br>몸을 납작하게 만들어 S자 모양으로 <br>미끄러지듯 안정된 활강을 한다. 
+					</p>
+					<p class="ssp">
+					활공 <br> 
+					엔진에 의한 추진력 없이 무동력상태로 강하하는 비행
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="box" style="background-image: url(mole.png);">
+			<h2 class="black">
+				매운맛을<br> 느낄 수 없다.
+			</h2>
+			<div class="door">
+				<h1>:</h1>
+			</div>
+			<div class="text" id="mole3">
+				<div>
+					<div class="image"
+					style="background-image:url(molerat.png);"></div>
+					<p class="sp1"> 매운맛을 느끼지 않는 </p>
+				<h2 id="mole2">하이펠트 두더지쥐</h2>
+				<p class="sp">( Highveld mole rat )</p>
+					<p>
+					쥐는 대부분 굴에서 AITC의 성질이 있는 <br>독개미의 공격을 받는다. 덕분에 이들 쥐는 AITC 내성이 생겨 다른 두더지쥐들이 <br>접근하기 꺼리는 곳에서도 살 수 있다.
+					<p class="ssp">
+					AITC <br> 
+					세포 내 단백질을 적극적으로 손상하는 화학 화합물<br>
+					매운 것을 먹을 때 고통을 느끼게 만듦
+					</p>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="box" style="background-image: url(dolphin.png);">
+			<h2 class="black">
+				강에서<br> 산다.
+			</h2>
+			<div class="door">
+				<h1>:</h1>
+			</div>
+			<div class="text" id="dolphin3">
+				<div>
+					<div class="image"
+					style="background-image:url(dolphin.jpg);
+					background-position: 0px -10px;"></div>
+					<p class="sp1"> 강에서 사는 </p>
+				<h2 id="dolphin2">강돌고래</h2>
+				<p class="sp">( River dolphin )</p>
+					<p>
+					강돌고래는 몸집이 작고 물고기를 직접 <br>사냥해 먹을 수 있는 긴 부리와 이빨을 <br>가지고 있다. 
+					아마존강, 갠지스강, 양쯔강 <br>매콩강, 인더스강에서 살고 있는데 환경오염으로 이미 멸종이거나 점차 사라지고 있다. 
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="box" style="background-image: url(rat.png);">
+			<h2 class="black">
+				물을 <br> 안 먹어도 <br> 괜찮다.
+			</h2>
+			<div class="door">
+				<h1>:</h1>
+			</div>
+			<div class="text" id="rat3">
+				<div>
+					<div class="image"
+					style="background-image:url(rat.jpg);
+					background-position: 0px 0px;"></div>
+					<p class="sp1"> 물을 안 안먹는 </p>
+				<h2 id="rat2">캥거루쥐</h2>
+				<p class="sp">( Kangaroo rats )</p>
+					<p>
+					쥐는 건조한 지역에 살지만 먹이로부터 <br>수분을 얻을 뿐 거의 물을 마시지 않는다. <br>또한 콩팥에서 수분이 재 흡수 되어 매우 <br>진한 오줌을 소량 배설한다.
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="box" style="background-image: url(elephant.png);">
+			<h2 class="black">
+				유배를<br> 갔다.
+			</h2>
+			<div class="door">
+				<h1>:</h1>
+			</div>
+			<div class="text" id="elephant3">
+				<div>
+					<div class="image"
+					style="background-image:url(elephant.jpg);
+					background-position: 0px 0px;"></div>
+					<p class="sp1"> 유배를 간 </p>
+				<h2 id="elephant2"> 코끼리</h2>
+				<p class="sp">( elepant )</p>
+					<p>
+					조선시대 태종 임금은 일본에서 코끼리를<br> 선물로 받았다. 이듬해 이우라는 사람이 <br>코끼리를 보고 '이상하게 생겼다.'며 침을 <br>뱉고 비웃다가 화가 난 코끼리에게 밟혀 <br>죽었다. 이 코끼리는 재판을 받아 지금의 <br>소록도인 노루섬으로 유배를 갔다.
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="box" style="background-image: url(whale.png);">
+			<h2 class="black">
+				심박수를 <br> 조절한다.
+			</h2>
+			<div class="door">
+				<h1>:</h1>
+			</div>
+			<div class="text" id="whale3">
+				<div>
+					<div class="image"
+					style="background-image:url(whale2.png);
+					background-position: 0px 0px;"></div>
+					<p class="sp1"> 심박수를 조절하는 </p>
+				<h2 id="whale2">대왕고래</h2>
+				<p class="sp">( Blue Whale )</p>
+					<p>
+					대왕고래의 대동맥 활은 탄력이 강해 혈류를 조절하는 기능이 탁월하다. 상황에 맞게 <br>혈류를 조절해서 1분에 2회에서 30여 회까지 심박수를 변화시킨다. 
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<hr>
+	<footer>
+		<div class="link">
+			<p class="pp">Photo</p>
+			<p>
+				by Aaron Burden on Unsplash<br>
+				by NordWood Themes on Unsplash<br><br>
+				by César Guadarrama Cantú on Unsplash <br>
+				by Mark Lotterhand on Filker<br><br>
+				by Emiliano Vittoriosi on Unsplash<br>
+				by Chan Swan on Unsplash<br><br>
+				by Joshua J. Cotten on Unsplash<br>
+				by Jessica Weiller on Unsplash<br><br>
+				by Pascal Mauerhofer on Unsplash
+			</p>
+		</div>
+		<div class="link">
+			<p class="pp" style="opacity: 0" >Photo</p>
+			<p>
+				by picture-year on Pixabay<br>
+				by Dewald Kleynhans<br><br>
+				by Jorge Vasconez on Unsplash<br>
+				by Sarah Olive on Unsplash<br><br>
+				by Michalis Mantelos on Unsplash<br>
+				by Trollinho on Unsplash<br><br>
+				by Sarah Kilian on Unsplash<br>
+				by Alex on Unsplash
+				by Dorota Polaczek <br><br>
+				by Nationalgeographic
+			</p>
+		</div>
+		<div class="link">
+			<p class="pp" style="opacity: 0" >Photo</p>
+			<p>
+				by Jack Catalano on Unsplash<br>
+				Photo by Mary McDonald on naturepl<br><br>
+				by VictorMelba on Pixabay<br>
+				by Roland Seitre on Mindenpictures<br><br>
+				by Lance Anderson on Unsplash<br>
+				by Takashi Murai on The Times<br><br>
+				by David Clode on Unsplash<br>
+				by Dorota Polaczek on Filker
+			</p>
+
+		</div>
+	<div class="link" style="height: 200px;">
+		<p class="ppp">Information</p>
+		<a href="https://biz.chosun.com/site/data/html_dir/2017/12/28/2017122800119.html">조선일보</a><br><br>
+		<a href="http://www.astronomer.rocks" >이웃집 과학자</a><br><br>
+		<a href="https://tv.naver.com/v/11052456" >비마이펫</a> <br><br>
+		<a href="http://san.chosun.com/site/data/html_dir/2019/01/30/2019013002980.html" >월간산</a>
+	</div>
+	<div class="link" style="height: 200px;">
+		<p class="ppp" style="opacity: 0;" >Information</p>
+		<a href="https://m.post.naver.com/my.nhn?memberNo=38419283" >동그람이</a><br><br>
+		<a href="https://nownews.seoul.co.kr/news/newsView.php?id=20190603601007&wlog_tag3=naver">나우뉴스</a><br><br>
+		<a href="https://www.nytimes.com/2012/12/02/magazine/can-a-jellyfish-unlock-the-secret-of-immortality.html?pagewanted=all">노컷뉴스</a><br><br>
+		<a href="https://www.nocutnews.co.kr/news/387297">The Times</a>
+	</div>
+	<div class="link" style="height: 200px;">
+		<p class="ppp" style="opacity: 0" >Information</p>
+		<a href="https://brunch.co.kr/@famtimes/639">팸타임스</a><br><br>
+		<a href="https://terms.naver.com/entry.nhn?docId=1524283&cid=47341&categoryId=47341">학생백과</a><br><br>
+		<a href="http://ecotopia.hani.co.kr/180811">물바람숲</a>
+	</div>
+	</footer>
+		<div class="link" 
+		style="margin-left: 75%; height: 20px; width: 270px;">
+	<p class="copyright">
+	Copyright © 2019 Lee A Hyun_qp. 모든 권리 보유.</p>
+	</div>
+	<div id="monitor" 
+	style="position: fixed;  top: 0; color: white;opacity: 0;"></div>
+
+
+
+<script>
+	function dragStart(event) {
+		event.dataTransfer.setData("text", event.target.id);
+	}
+
+	function allowDrop(event) {
+	  event.preventDefault();
+	}
+
+	function drop(e) {
+	  var data = event.dataTransfer.getData("text");
+	  var t = e.target.id;
+	  console.log(t);
+	  var t2 = t.split("2");
+	  if(data == t2[0]){ 
+	  	var k = data + "3";
+	  	var j = document.getElementById(k);
+	    j.style.transform = "rotateY(360deg)";
+	    j.style.opacity = "1";
+	    document.getElementById("result").innerHTML = "정답";
+	}
+		else{
+        document.getElementById("result").innerHTML = "다시";
+      }
+	}
+
+	window.onscroll = function(){
+		var t = document.documentElement.scrollTop + document.body.scrollTop;
+			monitor.innerHTML = t.toFixed(1);
+			if (1640 < t) { w2.style.opacity = "0";}
+			else{w2.style.opacity = "1";}
+		}
+</script>
+</body>
+</html>
